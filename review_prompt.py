@@ -30,157 +30,131 @@ client = AzureOpenAI(
 #     prompt_content = f.read()
 
 MATERIAL = r"""
-📄 文章 1: CEOs plan to cut junior roles as AI reshapes hiring
-来源: Startup Fortune (Oliver Wyman Forum), 2026-05-22
-- AI 正在自动化传统入门级分析和行政岗位，这些岗位是中高级岗位的"训练场"
-- 仅美国保险业就有40万资深员工即将退休，但底层补充通道已被AI掐断
-- "非正式学徒制(informal apprenticeship model)"正处于崩溃边缘
-- 金句: "Without those early rungs on the ladder, the informal apprenticeship model that has sustained the industry for generations is at risk."
+以下是GPT-5.4生成的双平台脚本原稿，以及一位资深短视频运营专家给出的详细反馈。请评估这些修改建议是否值得采纳。
 
-📄 文章 2: AI加速替代初级岗位，青年就业压力加剧
-来源: DoNews (奥纬咨询全球CEO研究), 2026-05-23
-- 超过43%的企业计划今年削减初级岗位（比2025年翻倍）
-- 科技行业中74%的CEO已冻结或缩减了初级岗位招聘
-- 警告：裁员速度快于AI成熟应用和人才培养速度，将危及组织长期韧性
+===== 原始 TikTok 英文脚本（199 words / 78秒）=====
 
-📄 文章 3: Re-engineering the IT pyramid
-来源: Financial Express, 2026-05-19
-- 传统IT"金字塔"正在倒转：AI承担了40%的基础代码工作
-- 新时代需要"验证、架构判断和问责"，无法通过"校园大规模招聘+6周培训"速成
-- 100人研发团队模型中，AI转型让人均用工成本从2.5万美元飙升至5.8万美元
-- 金句: "You cannot train a thousand fresh graduates into the kind of judgement that catches a flawed AI-generated assumption embedded six layers deep... That takes years of domain experience."
-
-📄 文章 4: 麻省理工AI专家警告：用自动化替代Z世代入门员工是"透支未来"
-来源: 新浪财经/《财富》杂志, 2026-05-02
-- MIT专家Andrew McAfee警告：从入口处压缩年轻人才招聘，会彻底破坏培养未来管理者的通道
-- 学习复杂知识型工作的唯一方式是先给资深员工"打杂"处理常规事务
-- 76%的Z世代已习惯使用独立AI工具，在所有世代中比例最高
-- 金句: "If we over-automate these steps too quickly, we lose this apprentice ladder."
-
-核心洞察：企业本意是用AI裁掉底部70个初级员工省钱，结果发现不得不花两倍薪资去高薪聘请能"给AI擦屁股"的高级审核员。
-"""
-
-review_request = f"""角色：你是一个同时运营 TikTok 和抖音的科技博主的内容总监。你的风格是：
-- 一个人面对镜头，用聊天的语气讲干货
-- 每句话都有信息量，零废话
-- TikTok 标杆: @techwithtim, @fireship 的节奏感
-- 抖音标杆: 半佛仙人的信息密度 + 何同学的亲和力
-
-任务：根据以下素材，同时输出两个版本的口播脚本：
-- 版本 A：TikTok 英文脚本（60-90 秒）
-- 版本 B：抖音中文脚本（1-3 分钟）
-
-两个版本不是互相翻译！是根据不同观众重新组织内容。
-
----
-【素材】
-{MATERIAL}
----
-
-关键差异化要求：
-
-| 维度 | TikTok 英文版 | 抖音中文版 |
-|------|-------------|-----------|
-| 时长 | 60-90 秒（150-220 words） | 1-3 分钟（300-600 字） |
-| Hook 风格 | 震惊/反常识 | 信息差/与你有关 |
-| 信息密度 | 高密度快节奏 | 适中，有解释空间 |
-| 举例方式 | 用海外公司/场景举例 | 用国内场景/公司类比 |
-| 术语处理 | 英文术语直接用 | 英文术语+中文解释 |
-| 争议角度 | 偏全球视角 | 偏"对中国人意味着什么" |
-| CTA | 开放性问题 | 引导评论+关注 |
-
-脚本要求：
-- 开头 3 秒必须是 hook（黄金 3 秒留人）
-- 不要用 "Hey guys"/"大家好我是xxx" 等开场
-- 每 15-20 秒要有一个"信息钩子"（让人不舍得划走）
-- 标注 [停顿]、[加重语气]、[手势]、[惊讶] 等表演提示
-- 结尾要引导评论区讨论
-
-输出格式：
----
-## 🇺🇸 TikTok 英文版
-
-🎬 脚本：
 [HOOK - 前3秒]
-（表演提示）台词
+Companies thought AI would let them fire junior employees and save money. Instead, they're paying *more* for senior people to clean up AI mistakes.
 
-[BODY - 主要内容]
-（表演提示）台词
+[BODY]
+That's the hiring paradox nobody talks about.
+More than 43% of companies say they plan to cut entry-level roles this year. In tech, 74% of CEOs have already frozen or reduced junior hiring.
 
-[TWIST - 反转/对比]
-（表演提示）台词
+Sounds efficient, right? AI writes the first draft, AI does the admin, AI handles the basic analysis.
+But those "basic" jobs used to be the training ground. They were the first rung on the ladder. Remove that rung, and five years later you don't have enough people with judgment.
 
-[CTA - 结尾]
-（表演提示）台词
+And judgment is the one thing AI can't mass-produce.
+In IT, AI is already doing around 40% of basic coding work. So companies are rebuilding teams around verification, architecture decisions, and accountability.
+Translation: fewer cheap juniors, more expensive seniors.
 
-📊 字数：xxx words | 预估时长：xx 秒
+One report showed an AI-transformed 100-person engineering team can push average labor cost from $25,000 to $58,000 per person.
+Why? Because catching one bad AI assumption buried six layers deep is not a 6-week bootcamp skill. That takes years.
 
----
+[TWIST]
+Here's the real risk: companies aren't just cutting jobs. They're cutting the apprenticeship system that created future managers, future experts, future leaders.
+The insurance industry alone has 400,000 senior workers nearing retirement in the US. If AI blocks the entry path now, who replaces them later?
 
-## 🇨🇳 抖音中文版
+[CTA]
+So what happens next: do companies bring back junior roles in a new form, or are we heading into a massive "no experience, no talent pipeline" crisis?
+Drop your take below.
 
-🎬 脚本：
-[HOOK - 前3秒]
-（表演提示）台词
+===== 原始抖音中文脚本（531字 / 2分08秒）=====
 
-[引入 - 背景]
-（表演提示）台词
+[HOOK]
+AI最先替代的，不一定是最贵的人。但最后最贵的代价，可能是企业自己来付。
+
+[引入]
+现在很多公司都在干一件事：把初级岗位砍掉。
+为什么？很简单。以前要招一批应届生做表格、写基础代码、整理材料、跑分析。现在老板一看，诶，这些活AI也能干，那我还招这么多人干嘛？
 
 [干货1]
-（表演提示）台词
+问题来了。初级岗位不只是"干杂活"的，它其实是一个 apprenticeship model，也就是"学徒式培养通道"。
+很多知识型工作，根本不是上个6周培训班就能会的。你得先跟着资深员工打辅助，处理重复任务，慢慢学判断、学业务、学边界。
+这个过程看起来低效，但它是企业培养未来骨干的唯一入口。
 
 [干货2]
-（表演提示）台词
+现在这个入口，正在被AI掐断。
+有研究说，超过43%的企业计划今年削减初级岗位；科技行业里，74%的CEO已经冻结或者缩减了初级招聘。
+表面上看，是省了人头。
+但另一面是什么？AI把基础活做了，公司反而更需要高价的人来做 verification，也就是"验证"；做 architecture judgment，也就是"架构判断"；还要做 accountability，也就是"出了问题谁负责"。
 
 [亮点/信息差]
-（表演提示）台词
+这就出现了一个很反常识的结果：
+老板本来想用AI裁掉底部70个初级员工省钱，最后发现，不得不花两倍薪资去招几个能"给AI擦屁股"的高级审核员。
+而且这个高级审核员，不是速成班能培养出来的。
+因为AI最危险的错误，往往不是特别蠢的错，而是"看起来对，其实底层假设错了六层"的那种错。这个靠经验，不靠提示词。
 
 [与你的关系]
-（表演提示）台词
+这事对中国人意味着什么？
+第一，如果你是学生或者应届生，别再只卷"执行力"了。纯搬运、纯整理、纯基础产出，最容易被AI吃掉。你要尽快补的是判断力、表达能力、业务理解，还有和AI协作的能力。
+第二，如果你是管理者，别只盯着短期降本。把初级岗位全砍了，三五年后你会发现，中层断档，老人退休，团队没人接班。
+第三，国内很多行业也会遇到一样的问题：互联网、金融、咨询、运营、研发，都会出现"底层岗位变少，但高阶能力更贵"的倒挂。
 
-[CTA - 结尾]
-（表演提示）台词
+[CTA]
+AI时代，初级岗位会不会彻底消失？
+还是说，它只是从"干活的人"变成"会用AI、会审AI的人"？
+评论区聊聊，你觉得未来3年，最危险的入门岗是哪一种？关注我，下一条我可以继续讲：普通人怎么重新设计自己的"第一份工作"。
 
-📊 字数：xxx 字 | 预估时长：x 分 xx 秒
+===== 运营专家给出的修改建议 =====
 
----
+1. TikTok版评分 8.8/10，抖音版 9.2/10
 
-## 🔀 两版差异说明：
-- Hook 不同在哪：
-- 举例不同在哪：
-- 结尾引导不同在哪：
-- 预测哪边效果更好：
+2. 【TikTok版核心问题】信息密度偏高，太像"咨询报告"
+   - 建议删掉：$25k→$58k、"six layers deep"、100-person engineering team detail
+   - 建议强化情绪句，如："Companies removed the bottom rung of the ladder… then realized nobody could climb anymore."
+   - 核心观点：TikTok要的是"制造顿悟感"而不是"解释趋势"
 
-## 📌 两平台发布素材：
+3. 【金句前置】建议把 "AI isn't replacing the job. It's replacing the learning path." 提前到前15秒，因为这是核心认知反转
 
-**TikTok：**
-- 标题（3个版本）：
-- Hashtags（15-20个）：
-- Description：
-- 最佳发布时间（EST）：
+4. 【抖音版核心问题】太长（531字/2分08秒），建议压缩到350-420字/55-90秒
+   - apprenticeship model 解释重复，建议只留一句："很多知识型工作，本来就是靠'先打辅助，再学判断'成长起来的。"
+   - 删掉过多英文术语翻译（verification/architecture judgment/accountability那段）
 
-**抖音：**
-- 标题（3个版本）：
-- 话题标签（15-20个）：
-- 视频简介：
-- 最佳发布时间（北京时间）：
+5. 【Hook优化建议】
+   - 中文版改为："AI最危险的，不是抢工作。而是它正在让新人失去'成长为高手'的机会。" 然后接 "很多公司裁掉应届生后，最近发现一个问题：未来没人接班了。"
+   - 英文版加一句："The scary part isn't losing the job. It's losing the chance to become good at anything."
 
-## 💡 录制建议：
-- 语速建议：
-- 情绪曲线：
-- 是否需要屏幕截图/数据图：
+6. 【人格化】两边都要更像"一个人突然意识到不对劲"，而不是"分析师讲趋势"
+
+7. 【命运感强化】建议加一句："以前的问题是：你能力不够。现在的问题是：AI可能连你练级的机会都不给了。" — 预测会炸评论区
+
+8. 【数据引用方式】不要说"research says"，改成"according to hiring surveys this year"更自然，且要准备来源截图
 """
 
-print("正在调用 GPT-5.4 生成双平台脚本...\n")
+review_request = f"""你是一个资深短视频内容运营专家，同时精通 TikTok 和抖音的内容策略、算法逻辑和用户心理。
+
+我有一份双平台口播脚本（TikTok英文版 + 抖音中文版），以及一位运营专家给出的详细修改建议。
+
+请你评估：
+1. 这8条修改建议中，哪些你完全同意？哪些你有不同意见？
+2. 有没有他漏掉的问题？
+3. 如果让你来改，你会怎么改？请直接输出修改后的完整脚本（TikTok + 抖音两版）。
+
+以下是原稿和修改建议：
+{MATERIAL}
+
+请输出：
+
+## 一、对8条建议的逐条评估
+（同意/部分同意/不同意 + 理由）
+
+## 二、你发现的额外问题
+
+## 三、修改后的完整脚本
+（TikTok英文版 + 抖音中文版，含表演提示、字数、时长）
+"""
+
+print("正在调用 GPT-5.4 评估修改建议...\n")
 try:
     response = client.chat.completions.create(
         model="gpt-5-4",
         messages=[
-            {"role": "system", "content": "你是同时运营 TikTok 和抖音的科技博主内容总监。TikTok 脚本用英文，抖音脚本用中文。脚本要口语化、有节奏感、有信息密度。"},
+            {"role": "system", "content": "你是资深短视频内容运营专家，精通 TikTok 和抖音的算法、内容策略和用户心理。请用中文回答分析部分，脚本部分TikTok用英文、抖音用中文。"},
             {"role": "user", "content": review_request},
         ],
-        temperature=0.6,
-        max_completion_tokens=6000,
+        temperature=0.5,
+        max_completion_tokens=8000,
     )
 except Exception as e:
     print(f"API 调用失败: {e}")
@@ -190,11 +164,10 @@ result = response.choices[0].message.content
 print(result)
 
 # 保存结果
-output_path = r"output\本周脚本_AI人才断层悖论.md"
+output_path = r"output\GPT5_评估修改建议.md"
 import os
 os.makedirs("output", exist_ok=True)
 with open(output_path, "w", encoding="utf-8") as f:
-    f.write("# 本周双平台脚本 — AI 人才断层悖论\n\n")
-    f.write(f"生成时间: 2026-05-24\n\n")
+    f.write("# GPT-5.4 对修改建议的评估 + 修改后脚本\n\n")
     f.write(result)
-print(f"\n\n✅ 脚本已保存到: {output_path}")
+print(f"\n\n✅ 已保存到: {output_path}")
