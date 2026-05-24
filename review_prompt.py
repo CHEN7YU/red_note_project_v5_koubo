@@ -30,131 +30,78 @@ client = AzureOpenAI(
 #     prompt_content = f.read()
 
 MATERIAL = r"""
-以下是GPT-5.4生成的双平台脚本原稿，以及一位资深短视频运营专家给出的详细反馈。请评估这些修改建议是否值得采纳。
+===== 当前 v2 抖音中文脚本（395字 / 70-85秒）=====
+""" + open(r"output\本周脚本_AI人才断层悖论.md", "r", encoding="utf-8").read() + r"""
 
-===== 原始 TikTok 英文脚本（199 words / 78秒）=====
+===== 新的修改建议（来自另一位 AI 顾问的反馈）=====
 
-[HOOK - 前3秒]
-Companies thought AI would let them fire junior employees and save money. Instead, they're paying *more* for senior people to clean up AI mistakes.
+核心观点：应该用更权威的信源来增强说服力，并重构脚本结构。
 
-[BODY]
-That's the hiring paradox nobody talks about.
-More than 43% of companies say they plan to cut entry-level roles this year. In tech, 74% of CEOs have already frozen or reduced junior hiring.
+1. 【信源升级】之前的素材来自二手快讯聚合站（Startup Fortune、DoNews），权威性不够。建议改用真正顶级信源：
+   - Bloomberg 报道 IBM CEO 暂停招聘 AI 能替代的岗位（约30%非面向客户岗位）
+   - Wired/TechCrunch 讨论 "The End of the Junior Developer"
+   - Harvard Business Review 的"认知学徒制"(Cognitive Apprenticeship) 崩溃论
 
-Sounds efficient, right? AI writes the first draft, AI does the admin, AI handles the basic analysis.
-But those "basic" jobs used to be the training ground. They were the first rung on the ladder. Remove that rung, and five years later you don't have enough people with judgment.
+2. 【视觉背书】建议在视频中贴出 Bloomberg、Wired、HBR 的真实新闻截图，建立权威感
 
-And judgment is the one thing AI can't mass-produce.
-In IT, AI is already doing around 40% of basic coding work. So companies are rebuilding teams around verification, architecture decisions, and accountability.
-Translation: fewer cheap juniors, more expensive seniors.
+3. 【脚本重构建议】把抖音版改成 1.5-2 分钟，结构改为：
+   - Hook（0-20秒）：直接放 Bloomberg IBM 截图 + "这不是贩卖焦虑"
+   - 现象揭秘（20-50秒）：Wired "初级开发者终结" + 金字塔对比
+   - 深度升华（50-90秒）：HBR "认知学徒制崩溃" 概念
+   - 结尾转化（90-120秒）：从执行者到审核员的破局方案
 
-One report showed an AI-transformed 100-person engineering team can push average labor cost from $25,000 to $58,000 per person.
-Why? Because catching one bad AI assumption buried six layers deep is not a 6-week bootcamp skill. That takes years.
+4. 【关键金句】
+   - "IBM 的 CEO 已经公开扣动了扳机：直接叫停 30% 可以被 AI 替代的岗位招聘"
+   - "5 年后的高级专家从哪儿来？总不能从石头里蹦出来吧？"
+   - "企业为了眼前的降本增效，亲手把年轻人向上攀爬的阶梯给砍断了"
 
-[TWIST]
-Here's the real risk: companies aren't just cutting jobs. They're cutting the apprenticeship system that created future managers, future experts, future leaders.
-The insurance industry alone has 400,000 senior workers nearing retirement in the US. If AI blocks the entry path now, who replaces them later?
-
-[CTA]
-So what happens next: do companies bring back junior roles in a new form, or are we heading into a massive "no experience, no talent pipeline" crisis?
-Drop your take below.
-
-===== 原始抖音中文脚本（531字 / 2分08秒）=====
-
-[HOOK]
-AI最先替代的，不一定是最贵的人。但最后最贵的代价，可能是企业自己来付。
-
-[引入]
-现在很多公司都在干一件事：把初级岗位砍掉。
-为什么？很简单。以前要招一批应届生做表格、写基础代码、整理材料、跑分析。现在老板一看，诶，这些活AI也能干，那我还招这么多人干嘛？
-
-[干货1]
-问题来了。初级岗位不只是"干杂活"的，它其实是一个 apprenticeship model，也就是"学徒式培养通道"。
-很多知识型工作，根本不是上个6周培训班就能会的。你得先跟着资深员工打辅助，处理重复任务，慢慢学判断、学业务、学边界。
-这个过程看起来低效，但它是企业培养未来骨干的唯一入口。
-
-[干货2]
-现在这个入口，正在被AI掐断。
-有研究说，超过43%的企业计划今年削减初级岗位；科技行业里，74%的CEO已经冻结或者缩减了初级招聘。
-表面上看，是省了人头。
-但另一面是什么？AI把基础活做了，公司反而更需要高价的人来做 verification，也就是"验证"；做 architecture judgment，也就是"架构判断"；还要做 accountability，也就是"出了问题谁负责"。
-
-[亮点/信息差]
-这就出现了一个很反常识的结果：
-老板本来想用AI裁掉底部70个初级员工省钱，最后发现，不得不花两倍薪资去招几个能"给AI擦屁股"的高级审核员。
-而且这个高级审核员，不是速成班能培养出来的。
-因为AI最危险的错误，往往不是特别蠢的错，而是"看起来对，其实底层假设错了六层"的那种错。这个靠经验，不靠提示词。
-
-[与你的关系]
-这事对中国人意味着什么？
-第一，如果你是学生或者应届生，别再只卷"执行力"了。纯搬运、纯整理、纯基础产出，最容易被AI吃掉。你要尽快补的是判断力、表达能力、业务理解，还有和AI协作的能力。
-第二，如果你是管理者，别只盯着短期降本。把初级岗位全砍了，三五年后你会发现，中层断档，老人退休，团队没人接班。
-第三，国内很多行业也会遇到一样的问题：互联网、金融、咨询、运营、研发，都会出现"底层岗位变少，但高阶能力更贵"的倒挂。
-
-[CTA]
-AI时代，初级岗位会不会彻底消失？
-还是说，它只是从"干活的人"变成"会用AI、会审AI的人"？
-评论区聊聊，你觉得未来3年，最危险的入门岗是哪一种？关注我，下一条我可以继续讲：普通人怎么重新设计自己的"第一份工作"。
-
-===== 运营专家给出的修改建议 =====
-
-1. TikTok版评分 8.8/10，抖音版 9.2/10
-
-2. 【TikTok版核心问题】信息密度偏高，太像"咨询报告"
-   - 建议删掉：$25k→$58k、"six layers deep"、100-person engineering team detail
-   - 建议强化情绪句，如："Companies removed the bottom rung of the ladder… then realized nobody could climb anymore."
-   - 核心观点：TikTok要的是"制造顿悟感"而不是"解释趋势"
-
-3. 【金句前置】建议把 "AI isn't replacing the job. It's replacing the learning path." 提前到前15秒，因为这是核心认知反转
-
-4. 【抖音版核心问题】太长（531字/2分08秒），建议压缩到350-420字/55-90秒
-   - apprenticeship model 解释重复，建议只留一句："很多知识型工作，本来就是靠'先打辅助，再学判断'成长起来的。"
-   - 删掉过多英文术语翻译（verification/architecture judgment/accountability那段）
-
-5. 【Hook优化建议】
-   - 中文版改为："AI最危险的，不是抢工作。而是它正在让新人失去'成长为高手'的机会。" 然后接 "很多公司裁掉应届生后，最近发现一个问题：未来没人接班了。"
-   - 英文版加一句："The scary part isn't losing the job. It's losing the chance to become good at anything."
-
-6. 【人格化】两边都要更像"一个人突然意识到不对劲"，而不是"分析师讲趋势"
-
-7. 【命运感强化】建议加一句："以前的问题是：你能力不够。现在的问题是：AI可能连你练级的机会都不给了。" — 预测会炸评论区
-
-8. 【数据引用方式】不要说"research says"，改成"according to hiring surveys this year"更自然，且要准备来源截图
+5. 【CTA 改变】从"评论区聊聊"改为"点赞收藏+转给正在找工作的朋友"
 """
 
-review_request = f"""你是一个资深短视频内容运营专家，同时精通 TikTok 和抖音的内容策略、算法逻辑和用户心理。
+review_request = f"""你是一个资深短视频内容运营专家，同时精通 TikTok 和抖音的内容策略、算法逻辑和用户心理。你也对新闻素养和信源可信度有深入理解。
 
-我有一份双平台口播脚本（TikTok英文版 + 抖音中文版），以及一位运营专家给出的详细修改建议。
+我有一份已经经过两轮优化的双平台口播脚本（v2版），现在收到了第三轮修改建议。这次的建议主要围绕"信源权威性升级"和"脚本结构重构"。
 
-请你评估：
-1. 这8条修改建议中，哪些你完全同意？哪些你有不同意见？
-2. 有没有他漏掉的问题？
-3. 如果让你来改，你会怎么改？请直接输出修改后的完整脚本（TikTok + 抖音两版）。
+请你从以下角度评估这些建议是否值得采纳：
 
-以下是原稿和修改建议：
 {MATERIAL}
 
-请输出：
+请逐条分析：
 
-## 一、对8条建议的逐条评估
-（同意/部分同意/不同意 + 理由）
+## 一、信源升级建议的评估
+1. IBM CEO 暂停招聘的 Bloomberg 报道——这个素材是否适合口播？引用时有什么风险（比如时效性、是否可能被误读）？
+2. Wired "The End of the Junior Developer"——这个概念是否真实存在？用在口播中是否合适？
+3. HBR "认知学徒制"——这个概念是否适合抖音/TikTok 观众？会不会太学术？
 
-## 二、你发现的额外问题
+## 二、脚本结构重构的评估
+1. 当前 v2 是 70-85 秒，建议改为 1.5-2 分钟。这个时长变化对完播率有什么影响？
+2. 新结构（Hook→现象→HBR理论→破局方案）vs 旧结构（Hook→现象→情绪峰值→CTA），哪个更适合抖音/TikTok？
+3. 新版增加了"普通人破局方案"段落，这是加分还是减分？
 
-## 三、修改后的完整脚本
-（TikTok英文版 + 抖音中文版，含表演提示、字数、时长）
+## 三、具体执行风险
+1. 在视频中贴 Bloomberg/Wired/HBR 截图是否有版权风险？
+2. 引用 IBM CEO 的具体数字（30%）是否需要核实？如果数字有出入怎么办？
+3. "认知学徒制"这个词在抖音上是否会让观众觉得"太装"？
+
+## 四、最终建议
+综合考虑，你认为应该：
+A. 全部采纳，按新版重写
+B. 部分采纳，在 v2 基础上微调（具体说明保留哪些、改哪些）
+C. 不采纳，v2 已经足够好
+
+如果选 B，请输出修改后的完整脚本（抖音中文版 + TikTok英文版）。
 """
 
-print("正在调用 GPT-5.4 评估修改建议...\n")
+print("正在调用 GPT-5.4 评估脚本修改建议...\n")
 try:
     response = client.chat.completions.create(
         model="gpt-5-4",
         messages=[
-            {"role": "system", "content": "你是资深短视频内容运营专家，精通 TikTok 和抖音的算法、内容策略和用户心理。请用中文回答分析部分，脚本部分TikTok用英文、抖音用中文。"},
+            {"role": "system", "content": "你是资深短视频内容运营专家，精通 TikTok 和抖音的算法、内容策略、用户心理和新闻素养。请用中文回答分析部分，脚本部分TikTok用英文、抖音用中文。"},
             {"role": "user", "content": review_request},
         ],
         temperature=0.5,
-        max_completion_tokens=8000,
+        max_completion_tokens=16000,
     )
 except Exception as e:
     print(f"API 调用失败: {e}")
@@ -164,10 +111,10 @@ result = response.choices[0].message.content
 print(result)
 
 # 保存结果
-output_path = r"output\GPT5_评估修改建议.md"
+output_path = r"output\GPT5_脚本修改评估_v3.md"
 import os
 os.makedirs("output", exist_ok=True)
 with open(output_path, "w", encoding="utf-8") as f:
-    f.write("# GPT-5.4 对修改建议的评估 + 修改后脚本\n\n")
+    f.write("# GPT-5.4 第三轮脚本修改建议评估\n\n")
     f.write(result)
 print(f"\n\n✅ 已保存到: {output_path}")

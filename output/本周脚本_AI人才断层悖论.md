@@ -1,65 +1,68 @@
 # 本周双平台脚本 — AI 人才断层悖论
 
 生成时间: 2026-05-24
-版本: v2（基于运营专家反馈 + GPT-5.4 评估后修改）
-变更记录: v1 备份在 本周脚本_AI人才断层悖论_v1.md
+版本: v2.5（v2基础上增加权威信源背书 + 轻量破局方向）
+变更记录: v1/v2 备份在 archive/ 文件夹
 
 ---
 
 ## 🇺🇸 TikTok 英文版
 
-**字数：约155词 | 时长：约58-68秒**
+**字数：约165词 | 时长：约60-72秒**
 
 🎬 脚本：
 
 ### [HOOK | 0-3s]
 （镜头近、语速快、眼神直接，制造"我刚意识到一个问题"的感觉）
 
-Everyone thinks AI is replacing junior jobs.
+Everyone thinks AI is replacing jobs.
 
 The scarier part?
-It may be replacing the path that turns juniors into experts.
+
+It may be replacing the path that turns beginners into experts.
 
 ### [BODY 1 | 3-18s]
-A lot of companies looked at AI and thought:
-"Great. We can cut entry-level hiring, automate the basic work, and save money."
+And this isn't just internet panic.
 
-And for a while, that sounds efficient.
+Major companies have already signaled that if AI can handle parts of basic work, they'll slow down hiring for some entry-level roles.
 
-But those "basic" jobs were never just cheap labor.
-They were where people learned judgment.
+On paper, that sounds efficient.
+
+Less admin work, less junior hiring, lower cost.
 
 ### [BODY 2 | 18-38s]
-That's the part people miss:
+But here's what people miss:
 
 （停顿一下，给字幕重点）
-**AI isn't just replacing the job.
-It's replacing the learning path.**
+A lot of knowledge work was never just about getting tasks done.
+It was how people built judgment.
 
-According to hiring surveys this year, a huge number of companies are already cutting or freezing junior roles.
+Those basic jobs were where you learned by doing,
+made mistakes,
+and slowly got good.
 
-So now companies have less beginner work…
-but more need for people who can check AI output, catch subtle mistakes, and make the final call.
+So if AI removes the beginner work,
+it may also remove the training ground.
 
-### [TWIST | 38-55s]
-And that creates a weird hiring paradox:
+### [TWIST | 38-56s]
+That's the real paradox.
 
 （切手势，做反转感）
-You save money on juniors,
-then spend more on seniors.
+Companies cut junior roles to save money,
+then end up paying even more for senior people.
 
-Because when AI gets something wrong, you don't need someone who can type faster.
-You need someone who's seen enough to know what looks right — but isn't.
+Because when AI gets something subtly wrong,
+you don't need someone who can do the task faster.
 
-### [CTA | 55-68s]
-That's why this matters.
+You need someone who can tell when it looks right —
+but isn't.
 
-The real risk isn't just fewer entry-level jobs.
-It's a future where nobody gets enough reps to become great.
+### [CTA | 56-72s]
+So the real risk isn't just fewer entry-level jobs.
 
-So what happens next?
-Do junior roles come back in a new form —
-or are we creating a "no experience, no talent pipeline" crisis?
+It's a future where fewer people get enough reps to become great.
+
+In the next few years, which entry-level roles disappear first?
 
 （像抛问题给朋友）
 **Comment what you think.**
@@ -68,9 +71,10 @@ or are we creating a "no experience, no talent pipeline" crisis?
 
 ### 📊 TikTok 录制提示
 - 前3秒：镜头近、语速快、"我刚意识到一个问题"的感觉
-- "AI isn't just replacing the job…" 停顿，给字幕加重
-- "You save money on juniors, then spend more on seniors." 切手势做反转感
+- "It was how people built judgment" 停顿，给字幕加重
+- "Companies cut junior roles… then end up paying even more" 切手势做反转感
 - 结尾 CTA 不要太重，像抛问题给朋友
+- 字幕左上角可加小字：Reported by major outlets like Bloomberg
 - 语速：每分钟 145-160 词
 - 情绪：冷静但不安，不是播新闻
 
@@ -78,7 +82,7 @@ or are we creating a "no experience, no talent pipeline" crisis?
 
 ## 🇨🇳 抖音中文版
 
-**字数：约395字 | 时长：约70-85秒**
+**字数：约430字 | 时长：约75-90秒**
 
 🎬 脚本：
 
@@ -86,23 +90,31 @@ or are we creating a "no experience, no talent pipeline" crisis?
 （看镜头，像"我最近想明白一件事"）
 
 很多人以为，AI最先抢走的是工作。
-但更危险的是：**它可能先抢走了新人变强的机会。**
+
+但我最近越来越觉得，更危险的是：
+**它可能先抢走了新人变强的机会。**
 
 ### [主体 1 | 5-22秒]
 （手势）
 
-很多公司现在都在做一件事：
-把应届生、初级岗、助理岗先砍掉。
+这不是空想。
 
-老板一看，表格能做，文案能写，基础代码能补，材料也能整理，
-那还招那么多新人干嘛？
+像 Bloomberg 报道过，一些大公司已经在调整招聘：
+**能被 AI 覆盖的部分基础岗位，开始少招，甚至暂停。**
+
+老板一看，
+表格能做，文案能写，基础代码能补，材料也能整理，
+那还招那么多初级岗干嘛？
 
 听起来很省钱，对吧？
 
-### [主体 2 | 22-45秒]
-但问题是，很多知识型工作，本来就是靠**"先打辅助，再学判断"**长出来的。
-
+### [主体 2 | 22-46秒]
 （放慢语速）
+
+但问题是，很多知识型工作，本来就不是一上来靠"会做"长出来的。
+
+而是靠**"先打辅助，再学判断"。**
+
 那些看起来最基础的活，
 以前其实是新人练手、犯错、积累经验的入口。
 
@@ -110,28 +122,34 @@ or are we creating a "no experience, no talent pipeline" crisis?
 公司短期是省了人，
 长期可能也把未来的主管、专家、骨干一起省没了。
 
-### [情绪峰值 | 45-62秒]
+### [情绪峰值 | 46-66秒]
+（重读，适合上大字幕）
+
 最扎心的是：
 
-（重读，适合上大字幕）
-**以前的问题是你能力不够。
-现在的问题是，AI可能连你练级的机会都不给了。**
+**以前的问题，是你能力不够。
+现在的问题，是 AI 可能连你练级的机会都不给了。**
 
-因为企业最后会发现，
-真正值钱的不是"会做"，而是"会判断、会把关、出了问题能兜底"。
+所以企业最后会发现，
+真正值钱的不是"会做"，
+而是**会判断、会把关、出了问题能兜底。**
 
 于是就出现一个反常识结果：
-初级岗变少了，高级人才反而更贵了。
+**初级岗变少了，高级人才反而更贵了。**
 
-### [结尾 CTA | 62-80秒]
+### [结尾 CTA | 66-85秒]
+（语速稍快，带动评论区站队）
+
 所以 AI 替代的，可能不只是岗位，
 而是**人成长为高手的那条路。**
 
-（语速稍快，带动评论区站队）
+未来最值钱的人，可能也不是执行最快的人，
+而是最会判断和验错的人。
+
 你觉得未来3年，
 最先消失的入门岗会是哪一种？
-是助理、运营、初级程序员，还是基础分析岗？
-评论区聊聊。
+助理、运营、初级程序员，还是基础分析岗？
+**评论区聊聊。**
 
 ---
 
@@ -140,6 +158,7 @@ or are we creating a "no experience, no talent pipeline" crisis?
 - "先打辅助，再学判断"放慢
 - "AI可能连你练级的机会都不给了"重读 + 大字幕
 - 结尾列举岗位时语速稍快，带动站队
+- 画面左上角小字可加："据 Bloomberg 等媒体报道"
 - 语速：每分钟 230-260 字
 - 情绪曲线：发现感 → 分析感 → 扎心 → 站队
 
@@ -149,9 +168,9 @@ or are we creating a "no experience, no talent pipeline" crisis?
 
 **TikTok：**
 - 标题（3个版本）：
-  1. AI isn't just replacing jobs. It's deleting the path to become good.
-  2. Companies cut junior roles… then realized nobody could climb the ladder
-  3. The scary part about AI isn't losing jobs — it's losing the chance to get good
+  1. AI isn't just replacing jobs. It's removing the path to get good.
+  2. The real AI risk? Fewer junior jobs means fewer future experts.
+  3. Companies cut entry-level roles — then wonder where senior talent went.
 - Hashtags：
   #AI #FutureOfWork #TechTok #Careers #Hiring #EntryLevelJobs #GenZ #Automation #TechJobs #BusinessTok #Management #Economy #AIAutomation #JobMarket #CareerAdvice
 - Description：
@@ -163,8 +182,8 @@ or are we creating a "no experience, no talent pipeline" crisis?
 **抖音：**
 - 标题（3个版本）：
   1. AI最狠的，不是抢工作，是把新人"练级入口"给关了
-  2. 以前是你能力不够，现在是AI连练级机会都不给你了
-  3. 公司砍掉应届生省钱，3年后发现没人能接班
+  2. 大公司开始少招初级岗后，真正危险的事出现了
+  3. 不是你不够强，是AI可能先把你变强的路堵了
 - 话题标签：
   #AI #人工智能 #职场 #应届生 #找工作 #就业 #科技 #打工人 #职业规划 #大厂 #大学生就业 #未来职业 #降本增效 #互联网 #程序员
 - 视频简介：
@@ -176,15 +195,15 @@ or are we creating a "no experience, no talent pipeline" crisis?
 
 ---
 
-## 🔀 v1 → v2 核心变化
+## 🔀 版本变更记录
 
-| 维度 | v1 | v2 |
-|------|-----|-----|
-| TikTok 字数 | 199 words / 78秒 | 155 words / 58-68秒 |
-| 抖音字数 | 531字 / 2分08秒 | 395字 / 70-85秒 |
-| 金句位置 | 埋在中后段 | 前15秒出现 |
-| 信息风格 | 咨询报告感 | 发现感/顿悟感 |
-| 翻译腔 | verification/accountability | "会判断、会把关、能兜底" |
-| 数据密度 | 5个数据点 | 精简为趋势描述 |
-| CTA | 偏理性开放 | 站队式选择题 |
-| 受众焦点 | 同时对三类人说话 | 主锁年轻职场人 |
+### v2 → v2.5 核心变化
+| 维度 | v2 | v2.5 |
+|------|-----|------|
+| 信源背书 | 无具体来源 | 轻量引用 Bloomberg 等主流媒体 |
+| 抖音字数 | 395字 / 70-85秒 | 430字 / 75-90秒 |
+| TikTok字数 | 155 words / 58-68秒 | 165 words / 60-72秒 |
+| 破局方向 | 无 | 结尾加一句"最值钱的是判断和验错能力" |
+| 抖音标题 | 偏焦虑 | 更多元（焦虑+反转+共情） |
+| 字幕提示 | 无信源标注 | 建议角标"据Bloomberg等媒体报道" |
+| 其余结构 | — | 保持不变 |

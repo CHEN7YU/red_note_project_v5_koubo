@@ -1,326 +1,394 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Short Video Cards v2</title>
 <style>
-  body { margin: 0; padding: 40px; background: #1a1a1a; font-family: 'Segoe UI', Arial, sans-serif; }
-  .card {
-    width: 1080px; height: 1920px;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-align: center; padding: 80px;
-    box-sizing: border-box; margin: 40px auto;
-    position: relative; overflow: hidden;
+  :root{
+    --bg:#07090d;
+    --bg2:#10141c;
+    --text:#ffffff;
+    --muted:#a7b0be;
+    --line:rgba(255,255,255,.08);
+    --red:#ff3b30;
+    --orange:#ff7a00;
+    --yellow:#ffb800;
+    --blue:#4da3ff;
+    --green:#2ecc71;
   }
 
-  /* TikTok Card 1: Core quote */
-  .tk1 {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-  }
-  .tk1 .main-text {
-    font-size: 72px; font-weight: 900; color: #ffffff;
-    line-height: 1.3; letter-spacing: -1px;
-  }
-  .tk1 .highlight {
-    color: #ff4444; font-size: 80px;
-  }
-  .tk1 .sub-text {
-    font-size: 42px; color: #888; margin-top: 60px;
-    font-style: italic;
-  }
-  .tk1::before {
-    content: ''; position: absolute; top: -100px; right: -100px;
-    width: 400px; height: 400px; border-radius: 50%;
-    background: rgba(255,68,68,0.08);
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    padding:32px;
+    background:#111;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
   }
 
-  /* TikTok Card 2: Comparison */
-  .tk2 {
-    background: linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 100%);
-  }
-  .tk2 .compare-box {
-    display: flex; width: 100%; justify-content: space-between;
-    align-items: center; gap: 40px;
-  }
-  .tk2 .side {
-    flex: 1; padding: 50px 30px; border-radius: 24px;
-  }
-  .tk2 .side-left {
-    background: rgba(255,68,68,0.1); border: 2px solid rgba(255,68,68,0.3);
-  }
-  .tk2 .side-right {
-    background: rgba(76,175,80,0.1); border: 2px solid rgba(76,175,80,0.3);
-  }
-  .tk2 .side-icon { font-size: 80px; margin-bottom: 20px; }
-  .tk2 .side-label { font-size: 36px; color: #888; margin-bottom: 16px; }
-  .tk2 .side-text { font-size: 52px; font-weight: 800; }
-  .tk2 .side-left .side-text { color: #ff4444; }
-  .tk2 .side-right .side-text { color: #4caf50; }
-  .tk2 .arrow-center {
-    font-size: 60px; color: #666; flex-shrink: 0;
-  }
-  .tk2 .title-text {
-    font-size: 56px; font-weight: 800; color: #fff; margin-bottom: 80px;
-    line-height: 1.4;
-  }
-  .tk2 .bottom-text {
-    font-size: 40px; color: #ff4444; margin-top: 80px; font-weight: 700;
+  .card{
+    width:1080px;
+    height:1920px;
+    margin:32px auto;
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 80% 15%, rgba(255,59,48,.12), transparent 24%),
+      radial-gradient(circle at 15% 85%, rgba(77,163,255,.10), transparent 22%),
+      linear-gradient(180deg, #0b0e14 0%, #07090d 100%);
+    color:var(--text);
+    border:1px solid rgba(255,255,255,.04);
   }
 
-  /* TikTok Card 3: Broken ladder */
-  .tk3 {
-    background: linear-gradient(135deg, #0a0a0a 0%, #16213e 100%);
-  }
-  .tk3 .ladder {
-    display: flex; flex-direction: column; align-items: center; gap: 0;
-    margin-bottom: 60px;
-  }
-  .tk3 .rung {
-    width: 500px; height: 60px; background: #444;
-    border-radius: 8px; margin: 12px 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 28px; color: #ccc; font-weight: 600;
-  }
-  .tk3 .rung.broken {
-    background: rgba(255,68,68,0.3); border: 2px dashed #ff4444;
-    position: relative;
-  }
-  .tk3 .rung.broken::after {
-    content: '❌ REMOVED BY AI'; position: absolute;
-    color: #ff4444; font-size: 24px; font-weight: 800;
-  }
-  .tk3 .rung.ok { background: #2d5a27; }
-  .tk3 .main-text {
-    font-size: 64px; font-weight: 900; color: #fff;
-    line-height: 1.3; margin-bottom: 40px;
-  }
-  .tk3 .sub-text {
-    font-size: 38px; color: #aaa; margin-top: 40px;
+  .safe{
+    position:absolute;
+    inset:110px 90px 150px 90px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
   }
 
-  /* 抖音 Card 1: Hook 大字 */
-  .dy1 {
-    background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 100%);
-  }
-  .dy1 .main-text {
-    font-size: 88px; font-weight: 900; color: #fff;
-    line-height: 1.4;
-  }
-  .dy1 .highlight { color: #ff6b35; }
-  .dy1 .red { color: #ff2d2d; }
-
-  /* 抖音 Card 2: 成长路径图 */
-  .dy2 {
-    background: #0a0a0a;
-  }
-  .dy2 .path-title {
-    font-size: 52px; font-weight: 800; color: #fff; margin-bottom: 60px;
-  }
-  .dy2 .path {
-    display: flex; flex-direction: column; align-items: center; gap: 0;
-  }
-  .dy2 .step {
-    padding: 28px 60px; border-radius: 16px; font-size: 38px;
-    font-weight: 700; min-width: 400px; text-align: center;
-  }
-  .dy2 .step-ok { background: #1b5e20; color: #a5d6a7; }
-  .dy2 .step-dead {
-    background: rgba(255,68,68,0.15); color: #ff4444;
-    border: 2px dashed #ff4444; position: relative;
-  }
-  .dy2 .arrow-down {
-    font-size: 48px; color: #555; margin: 8px 0;
-  }
-  .dy2 .arrow-dead {
-    font-size: 48px; color: #ff4444; margin: 8px 0;
-  }
-  .dy2 .step-label {
-    font-size: 26px; color: #888; margin-top: 4px;
+  .eyebrow{
+    font-size:34px;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--red);
+    margin-bottom:28px;
   }
 
-  /* 抖音 Card 3: 情绪峰值大字 */
-  .dy3 {
-    background: linear-gradient(135deg, #1a0000 0%, #000 100%);
-  }
-  .dy3 .line1 {
-    font-size: 64px; color: #999; font-weight: 700;
-    margin-bottom: 40px; line-height: 1.4;
-  }
-  .dy3 .line2 {
-    font-size: 76px; color: #ff2d2d; font-weight: 900;
-    line-height: 1.3;
+  .title{
+    font-size:108px;
+    line-height:1.06;
+    font-weight:950;
+    letter-spacing:-0.04em;
+    margin:0;
   }
 
-  /* 倒三角对比图 */
-  .dy4 {
-    background: #0a0a0a;
-  }
-  .dy4 .compare-title {
-    font-size: 48px; font-weight: 800; color: #fff; margin-bottom: 60px;
-  }
-  .dy4 .pyramids {
-    display: flex; gap: 60px; align-items: flex-end;
-  }
-  .dy4 .pyramid {
-    display: flex; flex-direction: column; align-items: center;
-  }
-  .dy4 .pyramid-label {
-    font-size: 32px; color: #888; margin-bottom: 20px; font-weight: 600;
-  }
-  .dy4 .p-row {
-    display: flex; align-items: center; justify-content: center;
-    height: 56px; margin: 4px 0; border-radius: 8px;
-    font-size: 24px; font-weight: 700; color: #fff;
+  .title.medium{ font-size:90px; }
+  .title.small{ font-size:78px; }
+
+  .sub{
+    margin-top:34px;
+    font-size:42px;
+    line-height:1.35;
+    color:var(--muted);
+    font-weight:650;
   }
 
-  /* 封面 TikTok */
-  .cover-tk {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-  }
-  .cover-tk .cover-main {
-    font-size: 96px; font-weight: 900; color: #fff;
-    line-height: 1.2; text-transform: uppercase;
-    letter-spacing: -2px;
-  }
-  .cover-tk .cover-sub {
-    font-size: 48px; color: #ff4444; margin-top: 40px;
-    font-weight: 700; font-style: italic;
-  }
-  .cover-tk .cover-tag {
-    position: absolute; bottom: 120px;
-    font-size: 32px; color: #555;
-    letter-spacing: 4px; text-transform: uppercase;
+  .accent-red{ color:var(--red); }
+  .accent-orange{ color:var(--orange); }
+  .accent-yellow{ color:var(--yellow); }
+
+  .divider{
+    width:180px;
+    height:8px;
+    border-radius:999px;
+    background:linear-gradient(90deg,var(--red),transparent);
+    margin:34px 0 10px;
   }
 
-  /* 封面 抖音 */
-  .cover-dy {
-    background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 60%, #0d1117 100%);
+  /* 对比模板 */
+  .compare{
+    display:grid;
+    grid-template-columns:1fr 120px 1fr;
+    gap:28px;
+    align-items:center;
+    margin-top:40px;
   }
-  .cover-dy .cover-main {
-    font-size: 100px; font-weight: 900; color: #fff;
-    line-height: 1.3;
+  .panel{
+    min-height:520px;
+    border-radius:36px;
+    padding:42px 34px;
+    border:2px solid var(--line);
+    background:rgba(255,255,255,.03);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
   }
-  .cover-dy .cover-highlight { color: #ff6b35; }
-  .cover-dy .cover-sub {
-    font-size: 44px; color: #888; margin-top: 50px;
-    line-height: 1.5;
+  .panel.bad{
+    background:rgba(255,59,48,.08);
+    border-color:rgba(255,59,48,.28);
   }
-  .cover-dy .cover-tag {
-    position: absolute; bottom: 120px;
-    font-size: 30px; color: #555;
-    letter-spacing: 6px;
+  .panel.warn{
+    background:rgba(255,122,0,.08);
+    border-color:rgba(255,122,0,.28);
   }
+  .panel .kicker{
+    font-size:34px;
+    color:var(--muted);
+    font-weight:800;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    margin-bottom:22px;
+  }
+  .panel .big{
+    font-size:74px;
+    line-height:1.08;
+    font-weight:950;
+    letter-spacing:-0.03em;
+  }
+  .mid-arrow{
+    font-size:88px;
+    text-align:center;
+    color:rgba(255,255,255,.5);
+    font-weight:900;
+  }
+
+  /* 路径/阶梯模板 */
+  .stack{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    align-items:center;
+    margin-top:46px;
+  }
+  .step{
+    width:700px;
+    min-height:110px;
+    border-radius:26px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:18px 28px;
+    font-size:48px;
+    font-weight:900;
+    letter-spacing:-0.02em;
+  }
+  .step.ok{
+    background:linear-gradient(180deg, rgba(46,204,113,.22), rgba(46,204,113,.12));
+    border:2px solid rgba(46,204,113,.25);
+    color:#eafff1;
+  }
+  .step.cut{
+    background:linear-gradient(180deg, rgba(255,59,48,.18), rgba(255,59,48,.08));
+    border:3px dashed rgba(255,59,48,.8);
+    color:#fff;
+    position:relative;
+  }
+  .step.cut::after{
+    content:"REMOVED";
+    position:absolute;
+    right:24px;
+    top:18px;
+    font-size:24px;
+    letter-spacing:.08em;
+    color:var(--red);
+    font-weight:950;
+  }
+  .arrow{
+    font-size:54px;
+    color:rgba(255,255,255,.38);
+    line-height:1;
+  }
+
+  /* 金字塔 */
+  .tri-wrap{
+    display:grid;
+    grid-template-columns:1fr 120px 1fr;
+    gap:20px;
+    align-items:end;
+    margin-top:40px;
+  }
+  .tri-box{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .tri-label{
+    font-size:40px;
+    font-weight:900;
+    margin-bottom:28px;
+    color:#fff;
+  }
+  .bar{
+    height:74px;
+    border-radius:18px;
+    margin:10px 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:34px;
+    font-weight:900;
+  }
+
+  /* 封面 */
+  .cover .safe{
+    justify-content:center;
+  }
+  .cover .title{
+    font-size:122px;
+    line-height:1.02;
+  }
+  .cover .sub{
+    font-size:50px;
+    color:#d6dbe4;
+    font-weight:800;
+    margin-top:28px;
+  }
+  .tag{
+    position:absolute;
+    left:90px;
+    bottom:90px;
+    font-size:28px;
+    color:rgba(255,255,255,.42);
+    font-weight:900;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+
+  /* 单卡微调 */
+  .tk1 .title{font-size:112px;}
+  .dy1 .title{font-size:126px; line-height:1.08;}
+  .dy3 .title{font-size:92px;}
+  .dy3 .sub{font-size:54px; color:#c9d0da;}
 </style>
 </head>
 <body>
 
-<!-- ============ TikTok Card 1: Core Quote ============ -->
+<!-- TK1 -->
 <div class="card tk1" id="tk1">
-  <div class="main-text">
-    AI isn't just<br>replacing the job.<br><br>
-    <span class="highlight">It's replacing<br>the learning path.</span>
+  <div class="safe">
+    <div class="eyebrow">AI PARADOX</div>
+    <h1 class="title">
+      AI isn't replacing<br>jobs
+    </h1>
+    <div class="divider"></div>
+    <div class="title medium accent-red">
+      It's replacing<br>the learning path
+    </div>
   </div>
-  <div class="sub-text">— The talent pipeline paradox</div>
 </div>
 
-<!-- ============ TikTok Card 2: Comparison ============ -->
+<!-- TK2 -->
 <div class="card tk2" id="tk2">
-  <div class="title-text">The Hiring Paradox</div>
-  <div class="compare-box">
-    <div class="side side-left">
-      <div class="side-icon">📉</div>
-      <div class="side-label">SAVE ON</div>
-      <div class="side-text">Juniors ↓</div>
-    </div>
-    <div class="arrow-center">→</div>
-    <div class="side side-right">
-      <div class="side-icon">📈</div>
-      <div class="side-label">SPEND MORE ON</div>
-      <div class="side-text">Seniors ↑</div>
+  <div class="safe">
+    <div class="eyebrow">HIRING SHIFT</div>
+    <h1 class="title small">Cut juniors.<br>Pay more for judgment.</h1>
+
+    <div class="compare">
+      <div class="panel bad">
+        <div class="kicker">Less spend on</div>
+        <div class="big accent-red">Juniors ↓</div>
+      </div>
+      <div class="mid-arrow">→</div>
+      <div class="panel warn">
+        <div class="kicker">More spend on</div>
+        <div class="big accent-orange">Seniors ↑</div>
+      </div>
     </div>
   </div>
-  <div class="bottom-text">Cut cheap labor → Pay MORE for judgment</div>
 </div>
 
-<!-- ============ TikTok Card 3: Broken Ladder ============ -->
+<!-- TK3 -->
 <div class="card tk3" id="tk3">
-  <div class="main-text">The career ladder<br>is breaking</div>
-  <div class="ladder">
-    <div class="rung ok">EXPERT / LEADER</div>
-    <div class="rung ok">SENIOR</div>
-    <div class="rung ok">MID-LEVEL</div>
-    <div class="rung broken"></div>
-    <div class="rung broken"></div>
+  <div class="safe">
+    <div class="eyebrow">CAREER LADDER</div>
+    <h1 class="title medium">The ladder is<br><span class="accent-red">breaking</span></h1>
+
+    <div class="stack">
+      <div class="step ok">Expert / Leader</div>
+      <div class="arrow">↑</div>
+      <div class="step ok">Senior</div>
+      <div class="arrow">↑</div>
+      <div class="step ok">Mid-level</div>
+      <div class="arrow accent-red">✕</div>
+      <div class="step cut">Entry-level reps</div>
+    </div>
+
+    <div class="sub">No reps → No future experts</div>
   </div>
-  <div class="sub-text">No entry-level reps → No future experts</div>
 </div>
 
-<!-- ============ 抖音 Card 1: Hook 大字 ============ -->
+<!-- DY1 -->
 <div class="card dy1" id="dy1">
-  <div class="main-text">
-    新人<span class="highlight">变强</span>的机会<br><br>
-    <span class="red">没了</span>
+  <div class="safe">
+    <h1 class="title">
+      新人<br><span class="accent-orange">变强的机会</span><br><span class="accent-red">没了</span>
+    </h1>
   </div>
 </div>
 
-<!-- ============ 抖音 Card 2: 成长路径图 ============ -->
+<!-- DY2 -->
 <div class="card dy2" id="dy2">
-  <div class="path-title">知识型工作的成长路径</div>
-  <div class="path">
-    <div class="step step-ok">主管 / 专家</div>
-    <div class="arrow-down">↑</div>
-    <div class="step step-ok">骨干 / 中层</div>
-    <div class="arrow-down">↑</div>
-    <div class="step step-ok">学判断 · 学业务</div>
-    <div class="arrow-down">↑</div>
-    <div class="step step-ok">先打辅助 · 练手</div>
-    <div class="arrow-dead">✕</div>
-    <div class="step step-dead">
-      初级岗 · 入门岗<br>
-      <span class="step-label">⚠️ 被 AI 吃掉了</span>
+  <div class="safe">
+    <div class="eyebrow">成长路径</div>
+    <h1 class="title medium">以前这样成长</h1>
+
+    <div class="stack">
+      <div class="step ok">主管 / 专家</div>
+      <div class="arrow">↑</div>
+      <div class="step ok">骨干 / 中层</div>
+      <div class="arrow">↑</div>
+      <div class="step ok">先打辅助 · 再练判断</div>
+      <div class="arrow accent-red">✕</div>
+      <div class="step cut">初级岗 / 入门岗</div>
     </div>
+
+    <div class="sub"><span class="accent-red">现在：</span>入口先被 AI 吃掉了</div>
   </div>
 </div>
 
-<!-- ============ 抖音 Card 3: 情绪峰值 ============ -->
+<!-- DY3 -->
 <div class="card dy3" id="dy3">
-  <div class="line1">以前的问题是<br>你能力不够</div>
-  <div class="line2">现在的问题是<br>AI 连你练级的<br>机会都不给了</div>
+  <div class="safe">
+    <div class="sub">以前，问题是你能力不够</div>
+    <h1 class="title">
+      现在<br><span class="accent-red">连练级机会<br>都没了</span>
+    </h1>
+  </div>
 </div>
 
-<!-- ============ 抖音 Card 4: 倒三角对比 ============ -->
+<!-- DY4 -->
 <div class="card dy4" id="dy4">
-  <div class="compare-title">AI 时代的人才结构变化</div>
-  <div class="pyramids">
-    <div class="pyramid">
-      <div class="pyramid-label">传统模式</div>
-      <div class="p-row" style="width:200px; background:#1b5e20;">高层</div>
-      <div class="p-row" style="width:300px; background:#2e7d32;">中层</div>
-      <div class="p-row" style="width:420px; background:#388e3c;">初级（大量）</div>
-    </div>
-    <div style="font-size:60px; color:#666; align-self:center;">→</div>
-    <div class="pyramid">
-      <div class="pyramid-label">AI 时代</div>
-      <div class="p-row" style="width:420px; background:#e65100;">高级审核（更贵）</div>
-      <div class="p-row" style="width:280px; background:#bf360c;">中层（断档）</div>
-      <div class="p-row" style="width:140px; background:#ff4444;">初级（消失）</div>
+  <div class="safe">
+    <div class="eyebrow">人才结构</div>
+    <h1 class="title medium">结构翻了</h1>
+
+    <div class="tri-wrap">
+      <div class="tri-box">
+        <div class="tri-label">传统模式</div>
+        <div class="bar" style="width:140px;background:#1f8f55;">高层</div>
+        <div class="bar" style="width:250px;background:#239b60;">中层</div>
+        <div class="bar" style="width:370px;background:#27ae60;">初级很多</div>
+      </div>
+
+      <div class="mid-arrow">→</div>
+
+      <div class="tri-box">
+        <div class="tri-label">AI 时代</div>
+        <div class="bar" style="width:370px;background:#ff7a00;">高级更贵</div>
+        <div class="bar" style="width:230px;background:#ff5a1f;">中层变薄</div>
+        <div class="bar" style="width:150px;background:#ff3b30;">初级消失</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ============ TikTok 封面 ============ -->
-<div class="card cover-tk" id="cover-tk">
-  <div class="cover-main">AI ISN'T<br>REPLACING<br>JOBS</div>
-  <div class="cover-sub">It's replacing the learning path</div>
-  <div class="cover-tag">THE TALENT PIPELINE PARADOX</div>
+<!-- Cover TK -->
+<div class="card cover cover-tk" id="cover-tk">
+  <div class="safe">
+    <h1 class="title">
+      AI ISN'T<br>KILLING JOBS
+    </h1>
+    <div class="sub accent-red">IT'S KILLING THE ENTRY PATH</div>
+  </div>
+  <div class="tag">TALENT PIPELINE PARADOX</div>
 </div>
 
-<!-- ============ 抖音封面 ============ -->
-<div class="card cover-dy" id="cover-dy">
-  <div class="cover-main">
-    练级入口<br><span class="cover-highlight">没了</span>
+<!-- Cover DY -->
+<div class="card cover cover-dy" id="cover-dy">
+  <div class="safe">
+    <h1 class="title">
+      练级入口<br><span class="accent-red">没了</span>
+    </h1>
+    <div class="sub">AI 先吃掉初级岗</div>
   </div>
-  <div class="cover-sub">AI 不抢工作<br>抢的是你变强的机会</div>
-  <div class="cover-tag">AI 人才断层悖论</div>
+  <div class="tag">AI TALENT SHIFT</div>
 </div>
 
 </body>
