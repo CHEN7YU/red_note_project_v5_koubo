@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Short Video Cards v2</title>
+<style>
+  :root{
+    --bg:#07090d;
+    --bg2:#10141c;
+    --text:#ffffff;
+    --muted:#a7b0be;
+    --line:rgba(255,255,255,.08);
+    --red:#ff3b30;
+    --orange:#ff7a00;
+    --yellow:#ffb800;
+    --blue:#4da3ff;
+    --green:#2ecc71;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    padding:32px;
+    background:#111;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+  }
+
+  .card{
+    width:1080px;
+    height:1920px;
+    margin:32px auto;
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 80% 15%, rgba(255,59,48,.12), transparent 24%),
+      radial-gradient(circle at 15% 85%, rgba(77,163,255,.10), transparent 22%),
+      linear-gradient(180deg, #0b0e14 0%, #07090d 100%);
+    color:var(--text);
+    border:1px solid rgba(255,255,255,.04);
+  }
+
+  .safe{
+    position:absolute;
+    inset:110px 90px 150px 90px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+
+  .eyebrow{
+    font-size:34px;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--red);
+    margin-bottom:28px;
+  }
+
+  .title{
+    font-size:108px;
+    line-height:1.06;
+    font-weight:950;
+    letter-spacing:-0.04em;
+    margin:0;
+  }
+
+  .title.medium{ font-size:90px; }
+  .title.small{ font-size:78px; }
+
+  .sub{
+    margin-top:34px;
+    font-size:42px;
+    line-height:1.35;
+    color:var(--muted);
+    font-weight:650;
+  }
+
+  .accent-red{ color:var(--red); }
+  .accent-orange{ color:var(--orange); }
+  .accent-yellow{ color:var(--yellow); }
+
+  .divider{
+    width:180px;
+    height:8px;
+    border-radius:999px;
+    background:linear-gradient(90deg,var(--red),transparent);
+    margin:34px 0 10px;
+  }
+
+  /* 对比模板 */
+  .compare{
+    display:grid;
+    grid-template-columns:1fr 120px 1fr;
+    gap:28px;
+    align-items:center;
+    margin-top:40px;
+  }
+  .panel{
+    min-height:520px;
+    border-radius:36px;
+    padding:42px 34px;
+    border:2px solid var(--line);
+    background:rgba(255,255,255,.03);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .panel.bad{
+    background:rgba(255,59,48,.08);
+    border-color:rgba(255,59,48,.28);
+  }
+  .panel.warn{
+    background:rgba(255,122,0,.08);
+    border-color:rgba(255,122,0,.28);
+  }
+  .panel .kicker{
+    font-size:34px;
+    color:var(--muted);
+    font-weight:800;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    margin-bottom:22px;
+  }
+  .panel .big{
+    font-size:74px;
+    line-height:1.08;
+    font-weight:950;
+    letter-spacing:-0.03em;
+  }
+  .mid-arrow{
+    font-size:88px;
+    text-align:center;
+    color:rgba(255,255,255,.5);
+    font-weight:900;
+  }
+
+  /* 路径/阶梯模板 */
+  .stack{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    align-items:center;
+    margin-top:46px;
+  }
+  .step{
+    width:700px;
+    min-height:110px;
+    border-radius:26px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:18px 28px;
+    font-size:48px;
+    font-weight:900;
+    letter-spacing:-0.02em;
+  }
+  .step.ok{
+    background:linear-gradient(180deg, rgba(46,204,113,.22), rgba(46,204,113,.12));
+    border:2px solid rgba(46,204,113,.25);
+    color:#eafff1;
+  }
+  .step.cut{
+    background:linear-gradient(180deg, rgba(255,59,48,.18), rgba(255,59,48,.08));
+    border:3px dashed rgba(255,59,48,.8);
+    color:#fff;
+    position:relative;
+  }
+  .step.cut::after{
+    content:"REMOVED";
+    position:absolute;
+    right:24px;
+    top:18px;
+    font-size:24px;
+    letter-spacing:.08em;
+    color:var(--red);
+    font-weight:950;
+  }
+  .arrow{
+    font-size:54px;
+    color:rgba(255,255,255,.38);
+    line-height:1;
+  }
+
+  /* 金字塔 */
+  .tri-wrap{
+    display:grid;
+    grid-template-columns:1fr 120px 1fr;
+    gap:20px;
+    align-items:end;
+    margin-top:40px;
+  }
+  .tri-box{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .tri-label{
+    font-size:40px;
+    font-weight:900;
+    margin-bottom:28px;
+    color:#fff;
+  }
+  .bar{
+    height:74px;
+    border-radius:18px;
+    margin:10px 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:34px;
+    font-weight:900;
+  }
+
+  /* 封面 */
+  .cover .safe{
+    justify-content:center;
+  }
+  .cover .title{
+    font-size:122px;
+    line-height:1.02;
+  }
+  .cover .sub{
+    font-size:50px;
+    color:#d6dbe4;
+    font-weight:800;
+    margin-top:28px;
+  }
+  .tag{
+    position:absolute;
+    left:90px;
+    bottom:90px;
+    font-size:28px;
+    color:rgba(255,255,255,.42);
+    font-weight:900;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+
+  /* 单卡微调 */
+  .tk1 .title{font-size:112px;}
+  .dy1 .title{font-size:126px; line-height:1.08;}
+  .dy3 .title{font-size:92px;}
+  .dy3 .sub{font-size:54px; color:#c9d0da;}
+</style>
+</head>
+<body>
+
+<!-- TK1 -->
+<div class="card tk1" id="tk1">
+  <div class="safe">
+    <div class="eyebrow">AI PARADOX</div>
+    <h1 class="title">
+      AI isn't replacing<br>jobs
+    </h1>
+    <div class="divider"></div>
+    <div class="title medium accent-red">
+      It's replacing<br>the learning path
+    </div>
+  </div>
+</div>
+
+<!-- TK2 -->
+<div class="card tk2" id="tk2">
+  <div class="safe">
+    <div class="eyebrow">HIRING SHIFT</div>
+    <h1 class="title small">Cut juniors.<br>Pay more for judgment.</h1>
+
+    <div class="compare">
+      <div class="panel bad">
+        <div class="kicker">Less spend on</div>
+        <div class="big accent-red">Juniors ↓</div>
+      </div>
+      <div class="mid-arrow">→</div>
+      <div class="panel warn">
+        <div class="kicker">More spend on</div>
+        <div class="big accent-orange">Seniors ↑</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TK3 -->
+<div class="card tk3" id="tk3">
+  <div class="safe">
+    <div class="eyebrow">CAREER LADDER</div>
+    <h1 class="title medium">The ladder is<br><span class="accent-red">breaking</span></h1>
+
+    <div class="stack">
+      <div class="step ok">Expert / Leader</div>
+      <div class="arrow">↑</div>
+      <div class="step ok">Senior</div>
+      <div class="arrow">↑</div>
+      <div class="step ok">Mid-level</div>
+      <div class="arrow accent-red">✕</div>
+      <div class="step cut">Entry-level reps</div>
+    </div>
+
+    <div class="sub">No reps → No future experts</div>
+  </div>
+</div>
+
+<!-- DY1 -->
+<div class="card dy1" id="dy1">
+  <div class="safe">
+    <h1 class="title">
+      新人<br><span class="accent-orange">变强的机会</span><br><span class="accent-red">没了</span>
+    </h1>
+  </div>
+</div>
+
+<!-- DY2 -->
+<div class="card dy2" id="dy2">
+  <div class="safe">
+    <div class="eyebrow">成长路径</div>
+    <h1 class="title medium">以前这样成长</h1>
+
+    <div class="stack">
+      <div class="step ok">主管 / 专家</div>
+      <div class="arrow">↑</div>
+      <div class="step ok">骨干 / 中层</div>
+      <div class="arrow">↑</div>
+      <div class="step ok">先打辅助 · 再练判断</div>
+      <div class="arrow accent-red">✕</div>
+      <div class="step cut">初级岗 / 入门岗</div>
+    </div>
+
+    <div class="sub"><span class="accent-red">现在：</span>入口先被 AI 吃掉了</div>
+  </div>
+</div>
+
+<!-- DY3 -->
+<div class="card dy3" id="dy3">
+  <div class="safe">
+    <div class="sub">以前，问题是你能力不够</div>
+    <h1 class="title">
+      现在<br><span class="accent-red">连练级机会<br>都没了</span>
+    </h1>
+  </div>
+</div>
+
+<!-- DY4 -->
+<div class="card dy4" id="dy4">
+  <div class="safe">
+    <div class="eyebrow">人才结构</div>
+    <h1 class="title medium">结构翻了</h1>
+
+    <div class="tri-wrap">
+      <div class="tri-box">
+        <div class="tri-label">传统模式</div>
+        <div class="bar" style="width:140px;background:#1f8f55;">高层</div>
+        <div class="bar" style="width:250px;background:#239b60;">中层</div>
+        <div class="bar" style="width:370px;background:#27ae60;">初级很多</div>
+      </div>
+
+      <div class="mid-arrow">→</div>
+
+      <div class="tri-box">
+        <div class="tri-label">AI 时代</div>
+        <div class="bar" style="width:370px;background:#ff7a00;">高级更贵</div>
+        <div class="bar" style="width:230px;background:#ff5a1f;">中层变薄</div>
+        <div class="bar" style="width:150px;background:#ff3b30;">初级消失</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cover TK -->
+<div class="card cover cover-tk" id="cover-tk">
+  <div class="safe">
+    <h1 class="title">
+      AI ISN'T<br>KILLING JOBS
+    </h1>
+    <div class="sub accent-red">IT'S KILLING THE ENTRY PATH</div>
+  </div>
+  <div class="tag">TALENT PIPELINE PARADOX</div>
+</div>
+
+<!-- Cover DY -->
+<div class="card cover cover-dy" id="cover-dy">
+  <div class="safe">
+    <h1 class="title">
+      练级入口<br><span class="accent-red">没了</span>
+    </h1>
+    <div class="sub">AI 先吃掉初级岗</div>
+  </div>
+  <div class="tag">AI TALENT SHIFT</div>
+</div>
+
+</body>
+</html>

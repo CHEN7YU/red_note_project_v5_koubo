@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>τ定律 Cards</title>
+<style>
+  :root{
+    --bg:#07090d;
+    --text:#ffffff;
+    --muted:#a7b0be;
+    --line:rgba(255,255,255,.08);
+    --red:#ff3b30;
+    --orange:#ff7a00;
+    --yellow:#ffb800;
+    --blue:#4da3ff;
+    --green:#2ecc71;
+    --cyan:#00d4aa;
+    --purple:#a855f7;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    padding:32px;
+    background:#111;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+  }
+
+  .card{
+    width:1080px;
+    height:1920px;
+    margin:32px auto;
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 80% 15%, rgba(77,163,255,.10), transparent 24%),
+      radial-gradient(circle at 15% 85%, rgba(0,212,170,.08), transparent 22%),
+      linear-gradient(180deg, #0b0e14 0%, #07090d 100%);
+    color:var(--text);
+    border:1px solid rgba(255,255,255,.04);
+  }
+
+  .safe{
+    position:absolute;
+    inset:110px 90px 150px 90px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+
+  .eyebrow{
+    font-size:34px;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--cyan);
+    margin-bottom:28px;
+  }
+
+  .title{
+    font-size:108px;
+    line-height:1.06;
+    font-weight:950;
+    letter-spacing:-0.04em;
+    margin:0;
+  }
+  .title.large{ font-size:122px; }
+  .title.medium{ font-size:88px; }
+  .title.small{ font-size:72px; }
+
+  .sub{
+    margin-top:34px;
+    font-size:42px;
+    line-height:1.35;
+    color:var(--muted);
+    font-weight:650;
+  }
+
+  .accent-red{ color:var(--red); }
+  .accent-orange{ color:var(--orange); }
+  .accent-yellow{ color:var(--yellow); }
+  .accent-blue{ color:var(--blue); }
+  .accent-cyan{ color:var(--cyan); }
+  .accent-green{ color:var(--green); }
+  .accent-purple{ color:var(--purple); }
+
+  .divider{
+    width:180px;
+    height:8px;
+    border-radius:999px;
+    background:linear-gradient(90deg,var(--cyan),transparent);
+    margin:34px 0 10px;
+  }
+
+  /* 对比模板 */
+  .compare{
+    display:grid;
+    grid-template-columns:1fr 100px 1fr;
+    gap:24px;
+    align-items:center;
+    margin-top:40px;
+  }
+  .panel{
+    min-height:520px;
+    border-radius:36px;
+    padding:42px 34px;
+    border:2px solid var(--line);
+    background:rgba(255,255,255,.03);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .panel.old{
+    background:rgba(255,59,48,.06);
+    border-color:rgba(255,59,48,.22);
+  }
+  .panel.new{
+    background:rgba(0,212,170,.06);
+    border-color:rgba(0,212,170,.22);
+  }
+  .panel .kicker{
+    font-size:32px;
+    color:var(--muted);
+    font-weight:800;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .panel .big{
+    font-size:64px;
+    line-height:1.12;
+    font-weight:950;
+    letter-spacing:-0.03em;
+  }
+  .panel .detail{
+    font-size:36px;
+    color:var(--muted);
+    margin-top:18px;
+    font-weight:700;
+    line-height:1.3;
+  }
+  .mid-arrow{
+    font-size:88px;
+    text-align:center;
+    color:rgba(255,255,255,.5);
+    font-weight:900;
+  }
+
+  /* 城市/房子比喻卡 */
+  .metaphor-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:28px;
+    margin-top:40px;
+  }
+  .metaphor-row{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:24px;
+    align-items:center;
+    border-radius:28px;
+    padding:32px 36px;
+    border:2px solid var(--line);
+    background:rgba(255,255,255,.03);
+  }
+  .metaphor-row.problem{
+    border-color:rgba(255,59,48,.22);
+    background:rgba(255,59,48,.05);
+  }
+  .metaphor-row.solution{
+    border-color:rgba(0,212,170,.22);
+    background:rgba(0,212,170,.05);
+  }
+  .metaphor-icon{
+    font-size:96px;
+    text-align:center;
+    line-height:1;
+  }
+  .metaphor-text{
+    font-size:42px;
+    font-weight:800;
+    line-height:1.3;
+  }
+  .metaphor-sub{
+    font-size:32px;
+    color:var(--muted);
+    font-weight:600;
+    margin-top:8px;
+  }
+
+  /* 折叠动画示意 */
+  .fold-demo{
+    display:grid;
+    grid-template-columns:1fr 80px 1fr;
+    gap:16px;
+    align-items:center;
+    margin-top:40px;
+  }
+  .fold-box{
+    border-radius:28px;
+    padding:36px;
+    text-align:center;
+    min-height:380px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+  }
+  .fold-box.before{
+    background:rgba(255,122,0,.06);
+    border:2px solid rgba(255,122,0,.22);
+  }
+  .fold-box.after{
+    background:rgba(0,212,170,.06);
+    border:2px solid rgba(0,212,170,.22);
+  }
+  .fold-box .emoji{
+    font-size:110px;
+    line-height:1;
+    margin-bottom:20px;
+  }
+  .fold-box .label{
+    font-size:40px;
+    font-weight:900;
+  }
+  .fold-box .desc{
+    font-size:30px;
+    color:var(--muted);
+    font-weight:600;
+    margin-top:10px;
+    line-height:1.3;
+  }
+
+  /* 时间线/成果 */
+  .timeline{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+    margin-top:44px;
+  }
+  .tl-item{
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:24px;
+    align-items:center;
+    border-radius:26px;
+    padding:30px 36px;
+    background:rgba(255,255,255,.04);
+    border:2px solid var(--line);
+  }
+  .tl-item.done{
+    border-color:rgba(0,212,170,.25);
+    background:rgba(0,212,170,.06);
+  }
+  .tl-item.next{
+    border-color:rgba(77,163,255,.25);
+    background:rgba(77,163,255,.06);
+  }
+  .tl-item.future{
+    border-color:rgba(168,85,247,.25);
+    background:rgba(168,85,247,.06);
+  }
+  .tl-year{
+    font-size:52px;
+    font-weight:950;
+    letter-spacing:-0.03em;
+  }
+  .tl-text{
+    font-size:40px;
+    font-weight:800;
+    line-height:1.3;
+  }
+
+  /* 封面 */
+  .cover .safe{
+    justify-content:center;
+  }
+  .cover .title{
+    font-size:122px;
+    line-height:1.02;
+  }
+  .cover .sub{
+    font-size:50px;
+    color:#d6dbe4;
+    font-weight:800;
+    margin-top:28px;
+  }
+  .tag{
+    position:absolute;
+    left:90px;
+    bottom:90px;
+    font-size:28px;
+    color:rgba(255,255,255,.42);
+    font-weight:900;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+
+  /* τ符号装饰 */
+  .tau-deco{
+    position:absolute;
+    right:60px;
+    top:80px;
+    font-size:280px;
+    font-weight:950;
+    color:rgba(0,212,170,.06);
+    line-height:1;
+    letter-spacing:-0.05em;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ TikTok Cards ============ -->
+
+<!-- TK1: Core concept -->
+<div class="card" id="tk1">
+  <div class="tau-deco">τ</div>
+  <div class="safe">
+    <div class="eyebrow">TAU LAW</div>
+    <h1 class="title">
+      What if chips<br>don't need to<br>get <span class="accent-cyan">smaller</span>?
+    </h1>
+    <div class="divider"></div>
+    <div class="sub">
+      Moore's Law shrinks <span class="accent-red">size</span>.<br>
+      Tau Law shrinks <span class="accent-cyan">delay</span>.
+    </div>
+  </div>
+</div>
+
+<!-- TK2: City metaphor — Moore vs Tau -->
+<div class="card" id="tk2">
+  <div class="safe">
+    <div class="eyebrow">THE PROBLEM</div>
+    <h1 class="title medium">
+      Denser city.<br>Same long <span class="accent-red">roads</span>.
+    </h1>
+
+    <div class="compare">
+      <div class="panel old">
+        <div class="kicker">Moore's Way</div>
+        <div class="big accent-red">🏠→🏚️</div>
+        <div class="detail">Shrink the house<br>over and over</div>
+      </div>
+      <div class="mid-arrow">→</div>
+      <div class="panel new">
+        <div class="kicker">Tau's Way</div>
+        <div class="big accent-cyan">🛣️→⚡</div>
+        <div class="detail">Shorten the<br>hallways instead</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TK3: Logic Folding -->
+<div class="card" id="tk3">
+  <div class="safe">
+    <div class="eyebrow">KEY IDEA</div>
+    <h1 class="title medium">
+      Logic <span class="accent-cyan">Folding</span>
+    </h1>
+    <div class="sub">Fold the paper. Two far points sit close.</div>
+
+    <div class="fold-demo">
+      <div class="fold-box before">
+        <div class="emoji">📄</div>
+        <div class="label accent-orange">Before</div>
+        <div class="desc">Flat layout<br>Long signal path</div>
+      </div>
+      <div class="mid-arrow" style="font-size:64px;">→</div>
+      <div class="fold-box after">
+        <div class="emoji">🗂️</div>
+        <div class="label accent-cyan">After</div>
+        <div class="desc">Folded layout<br>Short path, fast signal</div>
+      </div>
+    </div>
+
+    <div class="sub" style="text-align:center;margin-top:36px;">
+      🚇 Like a subway shortcut.<br>Same city. <span class="accent-cyan">Faster trip.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 抖音 Cards ============ -->
+
+<!-- DY1: Hook -->
+<div class="card" id="dy1">
+  <div class="tau-deco">τ</div>
+  <div class="safe">
+    <h1 class="title large">
+      芯片进步<br><span class="accent-cyan">不一定</span><br>靠更小
+    </h1>
+    <div class="sub" style="font-size:48px;">华为刚发布了一个新定律</div>
+  </div>
+</div>
+
+<!-- DY2: House/Road metaphor -->
+<div class="card" id="dy2">
+  <div class="safe">
+    <div class="eyebrow">核心比喻</div>
+    <h1 class="title medium">
+      房子缩不动了<br>那就<span class="accent-cyan">把路变短</span>
+    </h1>
+
+    <div class="metaphor-grid">
+      <div class="metaphor-row problem">
+        <div class="metaphor-icon">🏙️</div>
+        <div>
+          <div class="metaphor-text accent-red">摩尔定律的困境</div>
+          <div class="metaphor-sub">楼越盖越密，路没变短<br>车照样堵（信号还是慢）</div>
+        </div>
+      </div>
+      <div class="metaphor-row solution">
+        <div class="metaphor-icon">🛤️</div>
+        <div>
+          <div class="metaphor-text accent-cyan">τ定律的思路</div>
+          <div class="metaphor-sub">不拆楼，重修路线<br>让信号少绕路、快点到</div>
+        </div>
+      </div>
+      <div class="metaphor-row solution">
+        <div class="metaphor-icon">📄→🗂️</div>
+        <div>
+          <div class="metaphor-text accent-cyan">逻辑折叠</div>
+          <div class="metaphor-sub">把纸一折，远的两个点<br>一下就靠近了</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DY3: Comparison -->
+<div class="card" id="dy3">
+  <div class="safe">
+    <div class="eyebrow">新旧对比</div>
+    <h1 class="title medium">两条路</h1>
+
+    <div class="compare">
+      <div class="panel old">
+        <div class="kicker">摩尔定律</div>
+        <div class="big" style="font-size:58px;">几何缩微</div>
+        <div class="detail">
+          把房子<br><span class="accent-red">越做越小</span><br><br>
+          ⚠️ 快到极限<br>💰 成本飙升
+        </div>
+      </div>
+      <div class="mid-arrow">→</div>
+      <div class="panel new">
+        <div class="kicker">τ 定律</div>
+        <div class="big" style="font-size:58px;">时间缩微</div>
+        <div class="detail">
+          把路<br><span class="accent-cyan">越修越短</span><br><br>
+          ✅ 不受制程限制<br>🚀 信号更快到达
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DY4: Results timeline -->
+<div class="card" id="dy4">
+  <div class="safe">
+    <div class="eyebrow">实战成果</div>
+    <h1 class="title medium">
+      不是PPT<br>是<span class="accent-cyan">已经在用</span>的
+    </h1>
+
+    <div class="timeline">
+      <div class="tl-item done">
+        <div class="tl-year accent-green">6年</div>
+        <div class="tl-text">已设计并量产<br><span class="accent-cyan">381 款芯片</span></div>
+      </div>
+      <div class="tl-item next">
+        <div class="tl-year accent-blue">2026秋</div>
+        <div class="tl-text">新麒麟芯片<br>率先用上<span class="accent-cyan">逻辑折叠</span></div>
+      </div>
+      <div class="tl-item future">
+        <div class="tl-year accent-purple">2031</div>
+        <div class="tl-text">高端芯片<br><span class="accent-purple">重大性能突破</span></div>
+      </div>
+    </div>
+
+    <div class="sub" style="text-align:center;margin-top:36px;font-size:38px;">
+      这条路，恰恰是在外部压力最大的时候走出来的。
+    </div>
+  </div>
+</div>
+
+<!-- ============ Covers ============ -->
+
+<!-- Cover TK -->
+<div class="card cover" id="cover-tk">
+  <div class="tau-deco">τ</div>
+  <div class="safe">
+    <h1 class="title">
+      MOORE<br>SHRINKS<br><span class="accent-red">SIZE</span>
+    </h1>
+    <div class="divider"></div>
+    <h1 class="title" style="margin-top:24px;">
+      TAU<br>SHRINKS<br><span class="accent-cyan">DELAY</span>
+    </h1>
+  </div>
+  <div class="tag">HUAWEI TAU LAW · ISCAS 2026</div>
+</div>
+
+<!-- Cover DY -->
+<div class="card cover" id="cover-dy">
+  <div class="tau-deco">τ</div>
+  <div class="safe">
+    <h1 class="title">
+      摩尔做更小<br><span class="accent-cyan">τ 让信号<br>跑更快</span>
+    </h1>
+    <div class="sub">华为韬(τ)定律 · 一句话讲明白</div>
+  </div>
+  <div class="tag">华为 · ISCAS 2026</div>
+</div>
+
+<!-- ============ Recording Tips Cards ============ -->
+
+<!-- Tips TK -->
+<div class="card" id="tips-tk">
+  <div class="safe">
+    <div class="eyebrow">RECORDING TIPS</div>
+    <h1 class="title medium" style="margin-bottom:24px;">
+      How to <span class="accent-cyan">deliver</span> this
+    </h1>
+
+    <div class="metaphor-grid">
+      <div class="metaphor-row solution" style="border-color:rgba(77,163,255,.22);background:rgba(77,163,255,.05);">
+        <div class="metaphor-icon">🎙️</div>
+        <div>
+          <div class="metaphor-text accent-blue">Tone</div>
+          <div class="metaphor-sub">"Lemme explain this<br>in plain English"</div>
+        </div>
+      </div>
+      <div class="metaphor-row solution" style="border-color:rgba(255,184,0,.22);background:rgba(255,184,0,.05);">
+        <div class="metaphor-icon">⏱️</div>
+        <div>
+          <div class="metaphor-text accent-yellow">Pacing</div>
+          <div class="metaphor-sub">Hook → FAST<br>Metaphors → slow down<br>"381 chips" → punch it</div>
+        </div>
+      </div>
+      <div class="metaphor-row solution">
+        <div class="metaphor-icon">🤲</div>
+        <div>
+          <div class="metaphor-text accent-cyan">Gestures</div>
+          <div class="metaphor-sub">"Smaller" → pinch fingers<br>"Shorten" → pull hands close<br>"Fold" → fold paper motion</div>
+        </div>
+      </div>
+      <div class="metaphor-row solution" style="border-color:rgba(168,85,247,.22);background:rgba(168,85,247,.05);">
+        <div class="metaphor-icon">🎵</div>
+        <div>
+          <div class="metaphor-text accent-purple">BGM</div>
+          <div class="metaphor-sub">Lo-fi tech / ambient beat<br>Volume at 15-20% of voice<br>Beat drop at "381 chips"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tips DY -->
+<div class="card" id="tips-dy">
+  <div class="safe">
+    <div class="eyebrow">录制提示</div>
+    <h1 class="title medium" style="margin-bottom:24px;">
+      怎么<span class="accent-cyan">录</span>这条
+    </h1>
+
+    <div class="metaphor-grid">
+      <div class="metaphor-row solution" style="border-color:rgba(77,163,255,.22);background:rgba(77,163,255,.05);">
+        <div class="metaphor-icon">🎙️</div>
+        <div>
+          <div class="metaphor-text accent-blue">语气</div>
+          <div class="metaphor-sub">"我刚刷到一个挺有意思<br>的新概念，赶紧讲给你听"</div>
+        </div>
+      </div>
+      <div class="metaphor-row solution" style="border-color:rgba(255,184,0,.22);background:rgba(255,184,0,.05);">
+        <div class="metaphor-icon">⏱️</div>
+        <div>
+          <div class="metaphor-text accent-yellow">节奏</div>
+          <div class="metaphor-sub">Hook 前5秒 → 快！<br>"城市堵车""折纸" → 放慢<br>"381款""麒麟" → 加重音</div>
+        </div>
+      </div>
+      <div class="metaphor-row solution">
+        <div class="metaphor-icon">🤲</div>
+        <div>
+          <div class="metaphor-text accent-cyan">动作</div>
+          <div class="metaphor-sub">"做更小" → 手指捏小<br>"路变短" → 两手拉近<br>"折叠" → 做折纸动作</div>
+        </div>
+      </div>
+      <div class="metaphor-row solution" style="border-color:rgba(168,85,247,.22);background:rgba(168,85,247,.05);">
+        <div class="metaphor-icon">🎵</div>
+        <div>
+          <div class="metaphor-text accent-purple">BGM</div>
+          <div class="metaphor-sub">科技感/轻电子<br>音量压到人声的 15-20%<br>"381款芯片"处配 beat drop</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
