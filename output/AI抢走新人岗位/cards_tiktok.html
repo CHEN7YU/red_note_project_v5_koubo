@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TikTok Cards — AI Is Taking Entry-Level Jobs</title>
+<style>
+  :root{
+    --bg:#07090d;
+    --bg2:#10141c;
+    --text:#ffffff;
+    --muted:#a7b0be;
+    --line:rgba(255,255,255,.08);
+    --red:#ff3b30;
+    --orange:#ff7a00;
+    --yellow:#ffb800;
+    --blue:#4da3ff;
+    --green:#2ecc71;
+    --purple:#a855f7;
+    --cyan:#22d3ee;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    padding:32px;
+    background:#111;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  }
+
+  .card{
+    width:1080px;
+    height:1920px;
+    margin:32px auto;
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 80% 15%, rgba(255,59,48,.12), transparent 24%),
+      radial-gradient(circle at 15% 85%, rgba(77,163,255,.10), transparent 22%),
+      linear-gradient(180deg, #0b0e14 0%, #07090d 100%);
+    color:var(--text);
+    border:1px solid rgba(255,255,255,.04);
+  }
+
+  .safe{
+    position:absolute;
+    inset:110px 90px 150px 90px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+
+  .eyebrow{
+    font-size:34px;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--red);
+    margin-bottom:28px;
+  }
+
+  .title{
+    font-size:108px;
+    line-height:1.06;
+    font-weight:950;
+    letter-spacing:-0.04em;
+    margin:0;
+  }
+  .title.medium{ font-size:90px; }
+  .title.small{ font-size:78px; }
+
+  .sub{
+    margin-top:34px;
+    font-size:42px;
+    line-height:1.35;
+    color:var(--muted);
+    font-weight:650;
+  }
+
+  .accent-red{ color:var(--red); }
+  .accent-orange{ color:var(--orange); }
+  .accent-yellow{ color:var(--yellow); }
+  .accent-blue{ color:var(--blue); }
+  .accent-green{ color:var(--green); }
+  .accent-purple{ color:var(--purple); }
+  .accent-cyan{ color:var(--cyan); }
+
+  .divider{
+    width:180px;
+    height:8px;
+    border-radius:999px;
+    background:linear-gradient(90deg,var(--red),transparent);
+    margin:34px 0 10px;
+  }
+
+  .tag{
+    position:absolute;
+    left:90px;
+    bottom:90px;
+    font-size:28px;
+    color:rgba(255,255,255,.42);
+    font-weight:900;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+
+  /* ─── tool grid ─── */
+  .tool-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+    margin-top:48px;
+  }
+  .tool-pill{
+    border-radius:28px;
+    padding:36px 32px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    border:2px solid var(--line);
+    background:rgba(255,255,255,.03);
+  }
+  .tool-pill .tool-name{
+    font-size:44px;
+    font-weight:900;
+    letter-spacing:-0.02em;
+    margin-bottom:10px;
+  }
+  .tool-pill .tool-desc{
+    font-size:26px;
+    color:var(--muted);
+    font-weight:600;
+  }
+  .tool-pill.highlight{
+    border-color:rgba(255,59,48,.4);
+    background:rgba(255,59,48,.08);
+  }
+
+  /* ─── stat row ─── */
+  .stat-row{
+    display:flex;
+    flex-direction:column;
+    gap:32px;
+    margin-top:52px;
+  }
+  .stat-item{
+    border-radius:28px;
+    padding:40px 44px;
+    border:2px solid var(--line);
+    background:rgba(255,255,255,.03);
+  }
+  .stat-number{
+    font-size:82px;
+    font-weight:950;
+    letter-spacing:-0.03em;
+    line-height:1;
+  }
+  .stat-label{
+    font-size:34px;
+    font-weight:700;
+    color:var(--muted);
+    margin-top:12px;
+  }
+
+  /* ─── case study list ─── */
+  .case-list{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    margin-top:44px;
+  }
+  .case-item{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    align-items:center;
+    border-radius:24px;
+    padding:32px 36px;
+    border:2px solid var(--line);
+    background:rgba(255,255,255,.03);
+  }
+  .case-company{
+    font-size:42px;
+    font-weight:900;
+    letter-spacing:-0.02em;
+  }
+  .case-detail{
+    font-size:34px;
+    font-weight:700;
+    color:var(--muted);
+    line-height:1.3;
+  }
+  .case-detail strong{
+    color:#fff;
+    font-weight:900;
+  }
+
+  /* ─── stage pipeline ─── */
+  .pipeline{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+    margin-top:48px;
+  }
+  .stage{
+    width:720px;
+    border-radius:26px;
+    padding:32px 36px;
+    text-align:center;
+    font-size:44px;
+    font-weight:900;
+    letter-spacing:-0.01em;
+    border:2px solid var(--line);
+    background:rgba(255,255,255,.03);
+  }
+  .stage .stage-num{
+    font-size:28px;
+    font-weight:800;
+    color:var(--muted);
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .arrow-down{
+    font-size:48px;
+    color:rgba(255,255,255,.35);
+    line-height:1;
+  }
+
+  /* ─── action grid ─── */
+  .action-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+    margin-top:48px;
+  }
+  .action-box{
+    border-radius:28px;
+    padding:44px 32px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    border:2px solid var(--line);
+    background:rgba(255,255,255,.03);
+  }
+  .action-icon{
+    font-size:64px;
+    margin-bottom:16px;
+  }
+  .action-label{
+    font-size:42px;
+    font-weight:900;
+    letter-spacing:-0.02em;
+  }
+  .action-sub{
+    font-size:26px;
+    color:var(--muted);
+    font-weight:600;
+    margin-top:8px;
+  }
+
+  /* ─── cover ─── */
+  .cover .safe{ justify-content:center; }
+  .cover .title{ font-size:118px; line-height:1.04; }
+  .cover .sub{ font-size:50px; color:#d6dbe4; font-weight:800; margin-top:28px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     CARD 1 — Cover / Hook
+     ═══════════════════════════════════════════ -->
+<div class="card cover" id="cover">
+  <div class="safe">
+    <div class="eyebrow">THE REAL THREAT</div>
+    <h1 class="title">
+      AI isn't replacing<br>the <span class="accent-red">top</span> first
+    </h1>
+    <div class="divider"></div>
+    <div class="title medium accent-red">
+      It's replacing<br>the bottom rung
+    </div>
+    <div class="sub">Companies aren't firing seniors.<br>They're just not hiring juniors.</div>
+  </div>
+  <div class="tag">AI × ENTRY-LEVEL JOBS</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CARD 2 — AI Coding Tools Wave
+     ═══════════════════════════════════════════ -->
+<div class="card" id="tools">
+  <div class="safe">
+    <div class="eyebrow">THE AI CODING WAVE</div>
+    <h1 class="title medium">
+      It's not just<br><span class="accent-orange">one tool</span>
+    </h1>
+
+    <div class="tool-grid">
+      <div class="tool-pill highlight">
+        <div class="tool-name accent-red">Codex</div>
+        <div class="tool-desc">OpenAI · 4M WAU</div>
+      </div>
+      <div class="tool-pill highlight">
+        <div class="tool-name accent-orange">Claude Code</div>
+        <div class="tool-desc">Anthropic · Agentic</div>
+      </div>
+      <div class="tool-pill">
+        <div class="tool-name accent-blue">Copilot</div>
+        <div class="tool-desc">GitHub / Microsoft</div>
+      </div>
+      <div class="tool-pill">
+        <div class="tool-name accent-cyan">Cursor</div>
+        <div class="tool-desc">AI-native IDE</div>
+      </div>
+      <div class="tool-pill">
+        <div class="tool-name accent-purple">Devin</div>
+        <div class="tool-desc">Cognition · Agent</div>
+      </div>
+      <div class="tool-pill">
+        <div class="tool-name accent-green">Gemini Code</div>
+        <div class="tool-desc">Google · Code Assist</div>
+      </div>
+    </div>
+
+    <div class="sub">Every major player is racing to automate<br>the work juniors used to do.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CARD 3 — Codex Stats
+     ═══════════════════════════════════════════ -->
+<div class="card" id="codex">
+  <div class="safe">
+    <div class="eyebrow">OPENAI CODEX</div>
+    <h1 class="title medium">
+      Already <span class="accent-orange">massive</span>
+    </h1>
+
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-number accent-red">4M</div>
+        <div class="stat-label">Weekly active users</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number accent-orange">20%</div>
+        <div class="stat-label">Aren't even developers</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number accent-yellow">Fastest ↑</div>
+        <div class="stat-label">Non-developer segment growing fastest</div>
+      </div>
+    </div>
+
+    <div class="sub">"Writing code" no longer belongs<br>only to programmers.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CARD 4 — Claude Code Enterprise Cases
+     ═══════════════════════════════════════════ -->
+<div class="card" id="cases">
+  <div class="safe">
+    <div class="eyebrow">CLAUDE CODE — ENTERPRISE</div>
+    <h1 class="title small">
+      Real companies.<br><span class="accent-orange">Real numbers.</span>
+    </h1>
+
+    <div class="case-list">
+      <div class="case-item">
+        <div class="case-company accent-blue">Stripe</div>
+        <div class="case-detail"><strong>1,370</strong> engineers using Claude Code</div>
+      </div>
+      <div class="case-item">
+        <div class="case-company accent-purple">Wiz</div>
+        <div class="case-detail"><strong>50K lines</strong> Python → Go in <strong>20 hrs</strong><br>Expected: 2–3 months</div>
+      </div>
+      <div class="case-item">
+        <div class="case-company accent-red">Anthropic</div>
+        <div class="case-detail">"Most of our code is now<br>written by <strong>Claude Code</strong>"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CARD 5 — Microsoft 4-Stage Framework
+     ═══════════════════════════════════════════ -->
+<div class="card" id="framework">
+  <div class="safe">
+    <div class="eyebrow">MICROSOFT · 20K AI USERS</div>
+    <h1 class="title small">
+      The role is <span class="accent-orange">shifting</span>
+    </h1>
+
+    <div class="pipeline">
+      <div class="stage" style="border-color:rgba(77,163,255,.3);background:rgba(77,163,255,.08);">
+        <div class="stage-num">STAGE 1</div>
+        <span class="accent-blue">Author</span> — Do it yourself
+      </div>
+      <div class="arrow-down">↓</div>
+      <div class="stage" style="border-color:rgba(255,184,0,.3);background:rgba(255,184,0,.08);">
+        <div class="stage-num">STAGE 2</div>
+        <span class="accent-yellow">Editor</span> — Review AI's work
+      </div>
+      <div class="arrow-down">↓</div>
+      <div class="stage" style="border-color:rgba(255,122,0,.3);background:rgba(255,122,0,.08);">
+        <div class="stage-num">STAGE 3</div>
+        <span class="accent-orange">Director</span> — Assign tasks to AI
+      </div>
+      <div class="arrow-down">↓</div>
+      <div class="stage" style="border-color:rgba(255,59,48,.3);background:rgba(255,59,48,.08);">
+        <div class="stage-num">STAGE 4</div>
+        <span class="accent-red">Orchestrator</span> — Run multiple AIs
+      </div>
+    </div>
+
+    <div class="sub">The job isn't "write code" anymore.<br>It's <strong>define, judge, and orchestrate</strong>.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CARD 6 — Action Plan / CTA
+     ═══════════════════════════════════════════ -->
+<div class="card" id="actions">
+  <div class="safe">
+    <div class="eyebrow">YOUR MOVE</div>
+    <h1 class="title medium">
+      Don't wait.<br><span class="accent-green">Start now.</span>
+    </h1>
+
+    <div class="action-grid">
+      <div class="action-box" style="border-color:rgba(77,163,255,.3);background:rgba(77,163,255,.06);">
+        <div class="action-icon">🛠️</div>
+        <div class="action-label accent-blue">Build Projects</div>
+        <div class="action-sub">Use AI to ship real things</div>
+      </div>
+      <div class="action-box" style="border-color:rgba(255,122,0,.3);background:rgba(255,122,0,.06);">
+        <div class="action-icon">⚡</div>
+        <div class="action-label accent-orange">Automate Work</div>
+        <div class="action-sub">Reports, dashboards, analysis</div>
+      </div>
+      <div class="action-box" style="border-color:rgba(46,204,113,.3);background:rgba(46,204,113,.06);">
+        <div class="action-icon">📂</div>
+        <div class="action-label accent-green">Show Proof</div>
+        <div class="action-sub">Portfolio beats résumé</div>
+      </div>
+      <div class="action-box" style="border-color:rgba(168,85,247,.3);background:rgba(168,85,247,.06);">
+        <div class="action-icon">🚀</div>
+        <div class="action-label accent-purple">Ship MVPs</div>
+        <div class="action-sub">1 person + AI = real product</div>
+      </div>
+    </div>
+
+    <div class="sub" style="text-align:center;margin-top:44px;">
+      Executor → <span class="accent-red" style="font-weight:900;">Orchestrator</span>
+    </div>
+  </div>
+  <div class="tag">AI × ENTRY-LEVEL JOBS</div>
+</div>
+
+</body>
+</html>
